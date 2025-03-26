@@ -59,6 +59,15 @@ class SessionDBModel
         connection.Execute(sql);
     }
 
+    public static void DeleteLog(int id)
+    {
+        var sql = 
+        $@"DELETE FROM coding_sessions
+            WHERE Id = {id}";
+        
+        connection.Execute(sql);
+    }
+
     public static void ExitDB()
     {
         connection.Close();
