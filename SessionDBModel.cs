@@ -30,21 +30,11 @@ class SessionDBModel
         connection.Execute(sql);
     }
 
-    public static void SelectLog()
+    public static List<SessionData> SelectLog()
     {
         var sql = 
         $@"SELECT * FROM coding_sessions";
-        List<SessionData> dataSet = connection.Query<SessionData>(sql).ToList();
-        Grid grid = new();
-
-        grid.AddColumns(4);
-        grid.AddRow(["Id", "Start Time", "End Time", "Duration"]);
-        foreach (SessionData data in dataSet)
-        {
-            grid.AddRow([data.Id.ToString(), data.StartTime, data.EndTime, data.Duration.ToString()]);
-        }
-
-        AnsiConsole.Write(grid);
+        return connection.Query<SessionData>(sql).ToList();
     }
 
     public static void UpdateLog(int id, SessionData newData)
