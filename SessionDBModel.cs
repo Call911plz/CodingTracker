@@ -47,6 +47,18 @@ class SessionDBModel
         AnsiConsole.Write(grid);
     }
 
+    public static void UpdateLog(int id, SessionData newData)
+    {
+        var sql =
+        $@"UPDATE coding_sessions
+            SET StartTime = '{newData.StartTime}',
+                EndTime = '{newData.EndTime}',
+                Duration = {newData.Duration}
+            WHERE Id = {id}";
+        
+        connection.Execute(sql);
+    }
+
     public static void ExitDB()
     {
         connection.Close();
