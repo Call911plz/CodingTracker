@@ -1,5 +1,6 @@
 using Dapper;
 using Microsoft.Data.Sqlite;
+using Spectre.Console;
 class SessionDBModel
 {
     static SqliteConnection connection = null;
@@ -33,12 +34,17 @@ class SessionDBModel
     {
         var sql = 
         $@"SELECT * FROM coding_sessions";
-        var dataSet = connection.Query<SessionData>(sql).ToList();
+        List<SessionData> dataSet = connection.Query<SessionData>(sql).ToList();
+        Grid grid = new();
 
-        foreach (var data in dataSet)
+        grid.AddColumns(4);
+        grid.AddRow(["Id", "Start Time", "End Time", "Duration"]);
+        foreach (SessionData data in dataSet)
         {
-            Console.WriteLine($"{data.Id}\t{data.StartTime}\t{data.EndTime}\t{data.Duration}");
+            grid.AddRow([data.Id.ToString(), data.StartTime, data.EndTime, data.Duration.ToString()]);
         }
+
+        AnsiConsole.Write(grid);
     }
 
     public static void ExitDB()
