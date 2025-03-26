@@ -7,7 +7,7 @@ class SessionDBModel
     public static void CreateDB()
     {
         // using Dapper;
-        var connectionString = "Data Source=CodingSessionTracker.db;";
+        var connectionString = $@"Data Source=CodingSessionTracker.db;";
         // Connect to the database
         connection = new SqliteConnection(connectionString);
         
@@ -22,11 +22,11 @@ class SessionDBModel
         
     }
 
-    public static void CreateLog()
+    public static void CreateLog(SessionData data)
     {
         var sql = 
         $@"INSERT INTO coding_sessions (StartTime, EndTime, Duration)
-            VALUES ('Fuck', 'Shit', 60)";
+            VALUES ('{data.StartTime}', '{data.EndTime}', {data.Duration})";
         connection.Execute(sql);
     }
 

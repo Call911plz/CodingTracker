@@ -6,6 +6,7 @@ class Program
     {
         //UserInterface.StartUI();
         SessionDBModel.CreateDB(); // REQUIRED TO MAKE DB
+        //SessionDBModel.CreateLog();
         SessionDBModel.SelectLog();
         SessionDBModel.ExitDB(); // REQUIRED TO CLOSE DB
     }
