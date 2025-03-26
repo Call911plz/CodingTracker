@@ -9,22 +9,15 @@ class SessionDBModel
         // Connect to the database
         using (var connection = new SqliteConnection(connectionString))
         {
-            MakeDB(connection);
-            SelectLog(connection);
+            var sql = 
+            $@"CREATE TABLE IF NOT EXISTS coding_sessions (
+                Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                StartTime TEXT,
+                EndTime TEXT,
+                Duration INTEGER)";
+            
+            connection.Execute(sql);            
         }
-    }
-
-    static void MakeDB(SqliteConnection connection)
-    {
-        // Create a query that retrieves all authors"    
-        var sql = 
-        $@"CREATE TABLE IF NOT EXISTS coding_sessions (
-            Id INTEGER PRIMARY KEY AUTOINCREMENT,
-            StartTime TEXT,
-            EndTime TEXT,
-            Duration INTEGER)";     
-        // Use the Query method to execute the query and return the first author
-        connection.Execute(sql);
     }
 
     static void CreateLog(SqliteConnection connection)
