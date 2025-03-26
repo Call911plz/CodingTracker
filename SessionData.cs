@@ -1,13 +1,8 @@
 
 class SessionData
 {
-    public int Id { get; }
-    private DateTime startTime;
-    private DateTime endTime;
-    private TimeOnly duration;
-    
-    public SessionData()
-    {
-        
-    }
+    public int Id { get; set; }
+    public string StartTime { get; set; }
+    public string EndTime { get; set; }
+    public int Duration { get; set; }
 }
