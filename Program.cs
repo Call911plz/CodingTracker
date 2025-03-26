@@ -1,9 +1,9 @@
-﻿using Spectre.Console;
+﻿namespace CodingTracker;
 
 class Program
 {
     static void Main(string[] args)
     {
-        AnsiConsole.Markup("[underline red]Hello[/] World!");
+        UserInterface.StartUI();
     }
 }
