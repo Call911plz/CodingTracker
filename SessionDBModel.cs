@@ -22,7 +22,7 @@ class SessionDBModel
         
     }
 
-    public static void CreateLog(SessionData data)
+    public static void InsertLog(SessionData data)
     {
         var sql = 
         $@"INSERT INTO coding_sessions (StartTime, EndTime, Duration)
