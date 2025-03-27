@@ -5,11 +5,13 @@ class Program
 {
     static void Main(string[] args)
     {
-        // MainController.Start();
+        // Run main
+        MainController.Start();
 
-        SessionDBModel.CreateDB();
-        Console.Clear();
-        UserInterface.GetSessionData();
-        SessionDBModel.ExitDB();
+        //// Testing specific methods
+        // SessionDBModel.CreateDB();
+        // Console.Clear();
+        // UserInterface.GetSessionData();
+        // SessionDBModel.ExitDB();
     }
 }
