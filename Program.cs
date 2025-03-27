@@ -9,7 +9,7 @@ class Program
 
         SessionDBModel.CreateDB();
         Console.Clear();
-        UserInterface.DisplaySessionData(SessionDBModel.SelectLog());
+        UserInterface.GetSessionData();
         SessionDBModel.ExitDB();
     }
 }

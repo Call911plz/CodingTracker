@@ -71,18 +71,35 @@ class UserInterface
 
     public static SessionData GetSessionData()
     {
+        AnsiConsole.Markup("Enter Session Data [green](Press Enter for default)[/]\n");
+        GetTime();
         return default;
     }
 
-    public static DateTime GetStartTime()
+    public static DateTime GetTime()
     {
-        return default;
+        DateTime date = default;
+        DateTime time = default;
+
+        string dateString = AnsiConsole.Prompt(
+            new TextPrompt<string>("Start Date")
+                .DefaultValue(DateTime.Now.ToString("d")) // Setting default value to todays date
+                .Validate((s) => DateTime.TryParse(s, out _) // Lambda for parsing a valid date
+                    ? ValidationResult.Success() : ValidationResult.Error("Invalid Format"))
+            );
+        DateTime.TryParse(dateString, out date);
+        
+        string timeString = AnsiConsole.Prompt(
+            new TextPrompt<string>("Start Time")
+                .DefaultValue(DateTime.Now.ToString("t")) // Setting default value to todays date
+                .Validate((s) => DateTime.TryParse(s, out _) // Lambda for parsing a valid date
+                    ? ValidationResult.Success() : ValidationResult.Error("Invalid Format"))
+            );
+        DateTime.TryParse(timeString, out time);
+        
+        return date.Add(time.TimeOfDay);
     }
 
-    public static DateTime GetEndTime()
-    {
-        return default;
-    }
 
     public static TimeOnly CalculateDuration(DateTime startTime, DateTime endTime)
     {
