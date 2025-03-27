@@ -2,12 +2,14 @@ using Spectre.Console;
 
 class UserInterface
 {
-    const string Create = "Start new session";
-    const string FindAll = "View all sessions";
-    const string Find = "Search logs";
-    const string Update = "Update log";
-    const string Delete = "Delete log";
-    const string Exit = "Exit";
+    static Style defaultTextStyle = new (foreground: Color.White);
+    static Style defaultHeaderStyle = new (foreground: Color.White);
+    const string Create = "[white]Start new session[/]";
+    const string FindAll = "[white]View all sessions[/]";
+    const string Find = "[white]Search session[/]";
+    const string Update = "[white]Update session[/]";
+    const string Delete = "[white]Delete session[/]";
+    const string Exit = "[red]Exit[/]";
 
     public static Enums.MenuOption GetStartUIInput()
     {
@@ -15,10 +17,10 @@ class UserInterface
         Console.Clear();
         var menuInput = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
-                .Title("[green]Select Option: [/]")
+                .Title("[bold green3_1]Select Option: [/]")
                 .MoreChoicesText("[grey](Move up and down to reveal move options)[/]")
                 .AddChoices([
-                    $"[white]{Create}[/]", FindAll, Find,
+                    Create, FindAll, Find,
                     Update, Delete, Exit
                 ]));
         
@@ -44,16 +46,22 @@ class UserInterface
 
     public static void DisplaySessionData(List<SessionData> dataSet)
     {
-        Grid grid = new();
+        Table table = new();
+        
+        table.BorderColor(Color.White);
 
-        grid.AddColumns(4);
-        grid.AddRow(["Id", "Start Time", "End Time", "Duration"]);
+        table.AddColumns(["Id", "Start Time", "End Time", "Duration"]);
         foreach (SessionData data in dataSet)
-        {
-            grid.AddRow([data.Id.ToString(), data.StartTime, data.EndTime, data.Duration.ToString()]);
+        {            
+            Markup id = ToDefaultText(data.Id.ToString());
+            Markup startTime = ToDefaultText(data.StartTime);
+            Markup endTime = ToDefaultText(data.EndTime);
+            Markup Duration = ToDefaultText(data.Duration.ToString());
+
+            table.AddRow([id, startTime, endTime, Duration]);
         }
 
-        AnsiConsole.Write(grid);
+        AnsiConsole.Write(table);
     }
 
     public static SessionData GetSessionData()
@@ -74,5 +82,14 @@ class UserInterface
     public static TimeOnly CalculateDuration(DateTime startTime, DateTime endTime)
     {
         return default;
+    }
+
+    static Markup ToDefaultText(string text)
+    {
+        return new Markup(text, defaultTextStyle);
+    }
+    static Markup ToDefaultHeader(string text)
+    {
+        return new Markup(text, defaultHeaderStyle);
     }
 }

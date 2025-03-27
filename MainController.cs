@@ -14,6 +14,8 @@ class MainController
             case Enums.MenuOption.FIND:
                 break;
             case Enums.MenuOption.FINDALL:
+                var dataSet = SessionDBModel.SelectLog();
+                UserInterface.DisplaySessionData(dataSet);
                 break;
             case Enums.MenuOption.UPDATE:
                 break;
