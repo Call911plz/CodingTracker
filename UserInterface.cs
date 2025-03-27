@@ -85,6 +85,8 @@ class UserInterface
         var endTime = GetDateTime("End Time", "t").TimeOfDay;
         sessionData.EndTime = endDate.Add(endTime).ToString();
 
+        sessionData.Duration = CalculateDuration(sessionData.StartDateTime(), sessionData.EndDateTime()).ToString();
+
         return sessionData;
     }
 
@@ -104,9 +106,9 @@ class UserInterface
     }
 
 
-    public static TimeOnly CalculateDuration(DateTime startTime, DateTime endTime)
+    public static TimeSpan CalculateDuration(DateTime startTime, DateTime endTime)
     {
-        return default;
+        return endTime - startTime;
     }
 
     static Markup ToDefaultText(string text)

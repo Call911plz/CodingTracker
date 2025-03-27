@@ -16,7 +16,7 @@ class SessionDBModel
             Id INTEGER PRIMARY KEY AUTOINCREMENT,
             StartTime TEXT,
             EndTime TEXT,
-            Duration INTEGER)";
+            Duration TEXT)";
         
         connection.Execute(sql);
         
@@ -26,7 +26,7 @@ class SessionDBModel
     {
         var sql = 
         $@"INSERT INTO coding_sessions (StartTime, EndTime, Duration)
-            VALUES ('{data.StartTime}', '{data.EndTime}', {data.Duration})";
+            VALUES ('{data.StartTime}', '{data.EndTime}', '{data.Duration}')";
         connection.Execute(sql);
     }
 
@@ -43,7 +43,7 @@ class SessionDBModel
         $@"UPDATE coding_sessions
             SET StartTime = '{newData.StartTime}',
                 EndTime = '{newData.EndTime}',
-                Duration = {newData.Duration}
+                Duration = '{newData.Duration}'
             WHERE Id = {id}";
         
         connection.Execute(sql);
