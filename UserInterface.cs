@@ -55,4 +55,24 @@ class UserInterface
 
         AnsiConsole.Write(grid);
     }
+
+    public static SessionData GetSessionData()
+    {
+        return default;
+    }
+
+    public static DateTime GetStartTime()
+    {
+        return default;
+    }
+
+    public static DateTime GetEndTime()
+    {
+        return default;
+    }
+
+    public static TimeOnly CalculateDuration(DateTime startTime, DateTime endTime)
+    {
+        return default;
+    }
 }
