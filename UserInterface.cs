@@ -72,38 +72,34 @@ class UserInterface
     public static SessionData GetSessionData()
     {
         SessionData sessionData = new();
+        var startDate = GetDateTime("Start Date", "d");
+        var startTime = GetDateTime("Start Time", "t").TimeOfDay;
+        var endDate = GetDateTime("End Date", "d");
+        var endTime = GetDateTime("End Time", "t").TimeOfDay;
 
         AnsiConsole.Markup("[bold]Enter Session Data [green](Press Enter for default)[/][/]\n\n");
         AnsiConsole.Markup("Enter starting time: \n");
-        sessionData.StartTime = GetTime().ToString();
+        sessionData.StartTime = startDate.Add(startTime).ToString();
         AnsiConsole.Markup("\nEnter ending time: \n");
-        sessionData.EndTime = GetTime().ToString();
+        sessionData.EndTime = endDate.Add(endTime).ToString();
 
         return sessionData;
     }
 
-    public static DateTime GetTime()
+    public static DateTime GetDateTime(string prompt, string format)
     {
-        DateTime date = default;
-        DateTime time = default;
+        DateTime dateTime = default;
 
         string dateString = AnsiConsole.Prompt(
-            new TextPrompt<string>("Start Date")
-                .DefaultValue(DateTime.Now.ToString("d")) // Setting default value to todays date
+            new TextPrompt<string>(prompt)
+                .DefaultValue(DateTime.Now.ToString(format)) // Setting default value to todays date
                 .Validate((s) => DateTime.TryParse(s, out _) // Lambda for parsing a valid date
                     ? ValidationResult.Success() : ValidationResult.Error("Invalid Format"))
             );
-        DateTime.TryParse(dateString, out date);
+        DateTime.TryParse(dateString, out dateTime);
         
-        string timeString = AnsiConsole.Prompt(
-            new TextPrompt<string>("Start Time")
-                .DefaultValue(DateTime.Now.ToString("t")) // Setting default value to todays date
-                .Validate((s) => DateTime.TryParse(s, out _) // Lambda for parsing a valid date
-                    ? ValidationResult.Success() : ValidationResult.Error("Invalid Format"))
-            );
-        DateTime.TryParse(timeString, out time);
         
-        return date.Add(time.TimeOfDay);
+        return dateTime;
     }
 
 
