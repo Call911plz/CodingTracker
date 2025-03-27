@@ -71,9 +71,15 @@ class UserInterface
 
     public static SessionData GetSessionData()
     {
-        AnsiConsole.Markup("Enter Session Data [green](Press Enter for default)[/]\n");
-        GetTime();
-        return default;
+        SessionData sessionData = new();
+
+        AnsiConsole.Markup("[bold]Enter Session Data [green](Press Enter for default)[/][/]\n\n");
+        AnsiConsole.Markup("Enter starting time: \n");
+        sessionData.StartTime = GetTime().ToString();
+        AnsiConsole.Markup("\nEnter ending time: \n");
+        sessionData.EndTime = GetTime().ToString();
+
+        return sessionData;
     }
 
     public static DateTime GetTime()
