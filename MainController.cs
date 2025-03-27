@@ -32,9 +32,12 @@ class MainController
                     shouldRun = false;
                     break;
             }
-
-            AnsiConsole.WriteLine("Press [bold green]Enter[/] to return to continue");
-            Console.Read();
+            if (shouldRun)
+            {
+                AnsiConsole.WriteLine("Press [bold green]Enter[/] to return to continue");
+                Console.Read();
+            }
+            
             SessionDBModel.ExitDB(); // REQUIRED TO CLOSE DB
         }
     }
