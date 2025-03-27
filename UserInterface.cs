@@ -11,6 +11,7 @@ class UserInterface
 
     public static Enums.MenuOption StartUI()
     {
+        // Displays prompts for selection
         Console.Clear();
         var menuInput = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
@@ -21,6 +22,7 @@ class UserInterface
                     Update, Delete, Exit
                 ]));
         
+        // matchs input for enum
         switch (menuInput)
         {
             case Create:
