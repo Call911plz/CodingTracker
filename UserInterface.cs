@@ -9,7 +9,7 @@ class UserInterface
     const string Delete = "Delete log";
     const string Exit = "Exit";
 
-    public static Enums.MenuOption StartUI()
+    public static Enums.MenuOption GetStartUIInput()
     {
         // Displays prompts for selection
         Console.Clear();

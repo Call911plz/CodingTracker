@@ -6,7 +6,7 @@ class MainController
     {
         SessionDBModel.CreateDB(); // REQUIRED TO MAKE DB
 
-        var startInput = UserInterface.StartUI();
+        var startInput = UserInterface.GetStartUIInput();
         switch (startInput)
         {
             case Enums.MenuOption.CREATE:
