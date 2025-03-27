@@ -2,7 +2,7 @@
 
 class MainController
 {
-    public static void Main()
+    public static void Start()
     {
         SessionDBModel.CreateDB(); // REQUIRED TO MAKE DB
 

@@ -5,6 +5,6 @@ class Program
 {
     static void Main(string[] args)
     {
-        MainController.Main();
+        MainController.Start();
     }
 }

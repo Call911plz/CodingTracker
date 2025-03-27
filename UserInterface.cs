@@ -18,7 +18,7 @@ class UserInterface
                 .Title("[green]Select Option: [/]")
                 .MoreChoicesText("[grey](Move up and down to reveal move options)[/]")
                 .AddChoices([
-                    Create, FindAll, Find,
+                    $"[white]{Create}[/]", FindAll, Find,
                     Update, Delete, Exit
                 ]));
         
