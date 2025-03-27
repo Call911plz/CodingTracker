@@ -15,6 +15,11 @@ class UserInterface
     {
         // Displays prompts for selection
         Console.Clear();
+        AnsiConsole.Write(
+            new FigletText("Coding Sessions Tracker")
+                .Centered()
+                .Color(Color.Green));
+
         var menuInput = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("[bold green3_1]Select Option: [/]")
