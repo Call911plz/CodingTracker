@@ -106,7 +106,7 @@ class UserInterface
     }
 
 
-    public static TimeSpan CalculateDuration(DateTime startTime, DateTime endTime)
+    static TimeSpan CalculateDuration(DateTime startTime, DateTime endTime)
     {
         return endTime - startTime;
     }
