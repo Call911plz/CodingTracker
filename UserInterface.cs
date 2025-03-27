@@ -72,15 +72,17 @@ class UserInterface
     public static SessionData GetSessionData()
     {
         SessionData sessionData = new();
-        var startDate = GetDateTime("Start Date", "d");
-        var startTime = GetDateTime("Start Time", "t").TimeOfDay;
-        var endDate = GetDateTime("End Date", "d");
-        var endTime = GetDateTime("End Time", "t").TimeOfDay;
 
         AnsiConsole.Markup("[bold]Enter Session Data [green](Press Enter for default)[/][/]\n\n");
+
         AnsiConsole.Markup("Enter starting time: \n");
+        var startDate = GetDateTime("Start Date", "d");
+        var startTime = GetDateTime("Start Time", "t").TimeOfDay;
         sessionData.StartTime = startDate.Add(startTime).ToString();
+
         AnsiConsole.Markup("\nEnter ending time: \n");
+        var endDate = GetDateTime("End Date", "d");
+        var endTime = GetDateTime("End Time", "t").TimeOfDay;
         sessionData.EndTime = endDate.Add(endTime).ToString();
 
         return sessionData;
@@ -97,7 +99,6 @@ class UserInterface
                     ? ValidationResult.Success() : ValidationResult.Error("Invalid Format"))
             );
         DateTime.TryParse(dateString, out dateTime);
-        
         
         return dateTime;
     }
