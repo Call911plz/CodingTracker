@@ -73,21 +73,10 @@ class MainController
             UserInterface.DisplaySessionData(dataSet); // Show all logs
 
             // Change sort order
-            userInput = AnsiConsole.Prompt(
-            new SelectionPrompt<string>()
-                .Title("[bold green3_1]Sort by: [/]")
-                .MoreChoicesText("[grey](Move up and down to reveal move options)[/]")
-                .AddChoices([
-                    "Id", "StartTime", "EndTime", "Duration", "Exit"
-                ]));
+            userInput = UserInterface.GetSearchOrder();
             
             if (userInput != "Exit")
-                desc = AnsiConsole.Prompt(
-                    new TextPrompt<bool>("")
-                        .AddChoice(true)
-                        .AddChoice(false)
-                        .DefaultValue(false)
-                        .WithConverter(choice => choice ? "Desc" : "Asce"));
+                desc = UserInterface.GetDescending();
 
         }while(userInput != "Exit");
     }
