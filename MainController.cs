@@ -52,13 +52,14 @@ class MainController
 
     private static void Record()
     {
-        throw new NotImplementedException();
+        var data = UserInterface.GetRecordSession();
+        SessionDBModel.InsertLog(data);
     }
 
     static void Create()
     {
-        var dataCreate = UserInterface.GetSessionData(); // Get log from user
-        SessionDBModel.InsertLog(dataCreate); // Insert Log
+        var data = UserInterface.GetSessionData(); // Get log from user
+        SessionDBModel.InsertLog(data); // Insert Log
     }
 
     static void FindAll()

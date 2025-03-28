@@ -109,6 +109,27 @@ class UserInterface
         return dateTime;
     }
 
+    public static SessionData GetRecordSession()
+    {
+        SessionData data = new();
+        data.StartTime = DateTime.Now.ToString();
+        
+        // Just to wait for the user to press enter
+        _ = AnsiConsole.Prompt(
+            new TextPrompt<bool>("Press Enter to stop recording")
+                .AddChoice(true)
+                .DefaultValue(true)
+                .WithConverter(choice => choice ? "Stop" : ""));
+
+        data.EndTime = DateTime.Now.ToString();
+
+        data.Duration = CalculateDuration(
+            data.StartDateTime(), data.EndDateTime()
+        ).ToString();
+
+        return data;
+    }
+
     public static int GetId(int[] allIds)
     {
         int userId = AnsiConsole.Prompt(
