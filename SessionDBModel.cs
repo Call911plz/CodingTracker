@@ -29,10 +29,15 @@ class SessionDBModel
         connection.Execute(sql);
     }
 
-    public static List<SessionData> GetAllLog()
+    public static List<SessionData> GetAllLog(string orderBy, bool desc = false)
     {
         var sql = 
-        $@"SELECT * FROM coding_sessions";
+        $@"SELECT * 
+            FROM coding_sessions
+            ORDER BY {orderBy}";
+        
+        if (desc)
+            sql += " DESC";
         return connection.Query<SessionData>(sql).ToList();
     }
 

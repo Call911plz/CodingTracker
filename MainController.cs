@@ -12,7 +12,7 @@ class MainController
         while (shouldRun)
         {
             var startInput = UserInterface.GetStartUIInput(); // Get start menu input
-            var dataSet = SessionDBModel.GetAllLog(); // Contains all current logs
+            var dataSet = SessionDBModel.GetAllLog("Id"); // Contains all current logs
             var avaliableIds = SessionDBModel.GetIdFromDB(); // Contains all current ids
             switch (startInput)
             {
@@ -21,7 +21,7 @@ class MainController
                     break;
                 
                 case Enums.MenuOption.FINDALL:
-                    FindAll(dataSet);
+                    FindAll();
                     break;
                 
                 case Enums.MenuOption.UPDATE:
@@ -52,9 +52,34 @@ class MainController
         SessionDBModel.InsertLog(dataCreate); // Insert Log
     }
 
-    static void FindAll(List<SessionData> dataSet)
+    static void FindAll()
     {
-        UserInterface.DisplaySessionData(dataSet); // Show all logs
+        string userInput = "Id";
+        bool desc = false;
+        do
+        {
+            Console.Clear();
+            var dataSet = SessionDBModel.GetAllLog(userInput, desc);
+            UserInterface.DisplaySessionData(dataSet); // Show all logs
+
+            // Change sort order
+            userInput = AnsiConsole.Prompt(
+            new SelectionPrompt<string>()
+                .Title("[bold green3_1]Sort by: [/]")
+                .MoreChoicesText("[grey](Move up and down to reveal move options)[/]")
+                .AddChoices([
+                    "Id", "StartTime", "EndTime", "Duration", "Exit"
+                ]));
+            
+            if (userInput != "Exit")
+                desc = AnsiConsole.Prompt(
+                    new TextPrompt<bool>("")
+                        .AddChoice(true)
+                        .AddChoice(false)
+                        .DefaultValue(false)
+                        .WithConverter(choice => choice ? "Desc" : "Asce"));
+
+        }while(userInput != "Exit");
     }
 
     static void Update(List<SessionData> dataSet, int[] allIds)
