@@ -62,4 +62,12 @@ class SessionDBModel
     {
         connection.Close();
     }
+
+    public static int[] GetIdFromDB()
+    {
+        var sql = 
+        $@"SELECT * FROM coding_sessions";
+
+        return connection.Query<int>(sql).ToArray();
+    }
 }
