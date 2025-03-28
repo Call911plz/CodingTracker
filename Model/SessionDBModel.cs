@@ -1,12 +1,14 @@
 using Dapper;
 using Microsoft.Data.Sqlite;
-using Spectre.Console;
+using System.Configuration;
+
+
 class SessionDBModel
 {
     static SqliteConnection connection = null;
     public static void CreateDB()
     {
-        var connectionString = $@"Data Source=CodingSessionTracker.db;";
+        var connectionString = ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString;
         // Connect to the database
         connection = new SqliteConnection(connectionString);
         
