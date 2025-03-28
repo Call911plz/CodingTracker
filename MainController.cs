@@ -17,25 +17,19 @@ class MainController
             switch (startInput)
             {
                 case Enums.MenuOption.CREATE:
-                    var dataCreate = UserInterface.GetSessionData(); // Get log from user
-                    SessionDBModel.InsertLog(dataCreate); // Insert Log
+                    Create();
                     break;
                 
                 case Enums.MenuOption.FINDALL:
-                    UserInterface.DisplaySessionData(dataSet); // Show all logs
+                    FindAll(dataSet);
                     break;
                 
                 case Enums.MenuOption.UPDATE:
-                    UserInterface.DisplaySessionData(dataSet); // Show all logs
-                    var idUpdate = UserInterface.GetId(avaliableIds); // Get Id from user
-                    var dataUpdate = UserInterface.GetSessionData(); // Get new log from user
-                    SessionDBModel.UpdateLog(idUpdate, dataUpdate); // Update log
+                    Update(dataSet, avaliableIds);
                     break;
                 
                 case Enums.MenuOption.DELETE:
-                    UserInterface.DisplaySessionData(dataSet); // Show all logs
-                    var idDelete = UserInterface.GetId(avaliableIds); // Get Id from user
-                    SessionDBModel.DeleteLog(idDelete);
+                    Delete(dataSet, avaliableIds);
                     break;
                 
                 case Enums.MenuOption.EXIT:
@@ -50,5 +44,31 @@ class MainController
             
             SessionDBModel.ExitDB(); // REQUIRED TO CLOSE DB
         }
+    }
+
+    static void Create()
+    {
+        var dataCreate = UserInterface.GetSessionData(); // Get log from user
+        SessionDBModel.InsertLog(dataCreate); // Insert Log
+    }
+
+    static void FindAll(List<SessionData> dataSet)
+    {
+        UserInterface.DisplaySessionData(dataSet); // Show all logs
+    }
+
+    static void Update(List<SessionData> dataSet, int[] allIds)
+    {
+        UserInterface.DisplaySessionData(dataSet); // Show all logs
+        var id = UserInterface.GetId(allIds); // Get Id from user
+        var data = UserInterface.GetSessionData(); // Get new log from user
+        SessionDBModel.UpdateLog(id, data); // Update log
+    }
+
+    static void Delete(List<SessionData> dataSet, int[] allIds)
+    {
+        UserInterface.DisplaySessionData(dataSet); // Show all logs
+        var idDelete = UserInterface.GetId(allIds); // Get Id from user
+        SessionDBModel.DeleteLog(idDelete);
     }
 }
