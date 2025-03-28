@@ -36,6 +36,9 @@ class MainController
                     break;
                 
                 case Enums.MenuOption.DELETE:
+                    UserInterface.DisplaySessionData(dataSet); // Show all logs
+                    var idDelete = UserInterface.GetId(avaliableIds); // Get Id from user
+                    SessionDBModel.DeleteLog(idDelete);
                     break;
                 
                 case Enums.MenuOption.EXIT:
@@ -44,7 +47,7 @@ class MainController
             }
             if (shouldRun)
             {
-                AnsiConsole.WriteLine("Press [bold green]Enter[/] to return to continue");
+                AnsiConsole.MarkupLine("Press [bold green]Enter[/] to return to continue");
                 Console.Read();
             }
             
