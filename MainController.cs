@@ -16,6 +16,10 @@ class MainController
             var avaliableIds = SessionDBModel.GetIdFromDB(); // Contains all current ids
             switch (startInput)
             {
+                case Enums.MenuOption.RECORD:
+                    Record();
+                    break;
+                    
                 case Enums.MenuOption.CREATE:
                     Create();
                     break;
@@ -44,6 +48,11 @@ class MainController
             
             SessionDBModel.ExitDB(); // REQUIRED TO CLOSE DB
         }
+    }
+
+    private static void Record()
+    {
+        throw new NotImplementedException();
     }
 
     static void Create()

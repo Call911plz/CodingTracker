@@ -4,7 +4,8 @@ class UserInterface
 {
     static Style defaultTextStyle = new (foreground: Color.White);
     static Style defaultHeaderStyle = new (foreground: Color.White);
-    const string Create = "[white]Start new session[/]";
+    const string Record = "[white]Record new session[/]";
+    const string Create = "[white]Enter new session[/]";
     const string FindAll = "[white]View all sessions[/]";
     const string Update = "[white]Update session[/]";
     const string Delete = "[white]Delete session[/]";
@@ -24,12 +25,14 @@ class UserInterface
                 .Title("[bold green3_1]Select Option: [/]")
                 .MoreChoicesText("[grey](Move up and down to reveal move options)[/]")
                 .AddChoices([
-                    Create, FindAll, Update, Delete, Exit
+                    Record, Create, FindAll, Update, Delete, Exit
                 ]));
         
         // matchs input for enum
         switch (menuInput)
         {
+            case Record:
+                return Enums.MenuOption.RECORD;
             case Create:
                 return Enums.MenuOption.CREATE;
             case FindAll:
