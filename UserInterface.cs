@@ -111,7 +111,7 @@ class UserInterface
             new TextPrompt<int>("Select log from ID")
                 .AddChoices(allIds)
         );
-        return default;
+        return userId;
     }
 
     static TimeSpan CalculateDuration(DateTime startTime, DateTime endTime)
