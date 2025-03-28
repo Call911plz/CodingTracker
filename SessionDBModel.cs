@@ -30,7 +30,7 @@ class SessionDBModel
         connection.Execute(sql);
     }
 
-    public static List<SessionData> SelectLog()
+    public static List<SessionData> GetAllLog()
     {
         var sql = 
         $@"SELECT * FROM coding_sessions";

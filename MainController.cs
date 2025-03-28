@@ -11,25 +11,28 @@ class MainController
 
         while (shouldRun)
         {
-            var startInput = UserInterface.GetStartUIInput();
-            var dataSet = SessionDBModel.SelectLog();
+            var startInput = UserInterface.GetStartUIInput(); // Get start menu input
+            var dataSet = SessionDBModel.GetAllLog(); // Contains all current logs
+            var avaliableIds = SessionDBModel.GetIdFromDB(); // Contains all current ids
             switch (startInput)
             {
                 case Enums.MenuOption.CREATE:
-                    var data = UserInterface.GetSessionData();
-                    SessionDBModel.InsertLog(data);
+                    var dataCreate = UserInterface.GetSessionData(); // Get log from user
+                    SessionDBModel.InsertLog(dataCreate); // Insert Log
                     break;
                 
                 case Enums.MenuOption.FIND:
                     break;
                 
                 case Enums.MenuOption.FINDALL:
-                    UserInterface.DisplaySessionData(dataSet);
+                    UserInterface.DisplaySessionData(dataSet); // Show all logs
                     break;
                 
                 case Enums.MenuOption.UPDATE:
-                    UserInterface.DisplaySessionData(dataSet);
-                    
+                    UserInterface.DisplaySessionData(dataSet); // Show all logs
+                    var idUpdate = UserInterface.GetId(avaliableIds); // Get Id from user
+                    var dataUpdate = UserInterface.GetSessionData(); // Get new log from user
+                    SessionDBModel.UpdateLog(idUpdate, dataUpdate); // Update log
                     break;
                 
                 case Enums.MenuOption.DELETE:
