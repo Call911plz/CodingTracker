@@ -6,7 +6,6 @@ class SessionDBModel
     static SqliteConnection connection = null;
     public static void CreateDB()
     {
-        // using Dapper;
         var connectionString = $@"Data Source=CodingSessionTracker.db;";
         // Connect to the database
         connection = new SqliteConnection(connectionString);

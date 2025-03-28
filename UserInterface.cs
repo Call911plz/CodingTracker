@@ -75,17 +75,22 @@ class UserInterface
 
         AnsiConsole.Markup("[bold]Enter Session Data [green](Press Enter for default)[/][/]\n\n");
 
+        // Getting start time
         AnsiConsole.Markup("Enter starting time: \n");
         var startDate = GetDateTime("Start Date", "d");
         var startTime = GetDateTime("Start Time", "t").TimeOfDay;
         sessionData.StartTime = startDate.Add(startTime).ToString();
 
+        // Getting end time
         AnsiConsole.Markup("\nEnter ending time: \n");
         var endDate = GetDateTime("End Date", "d");
         var endTime = GetDateTime("End Time", "t").TimeOfDay;
         sessionData.EndTime = endDate.Add(endTime).ToString();
 
-        sessionData.Duration = CalculateDuration(sessionData.StartDateTime(), sessionData.EndDateTime()).ToString();
+        // Gettign duration
+        sessionData.Duration = CalculateDuration(
+            sessionData.StartDateTime(), sessionData.EndDateTime()
+        ).ToString();
 
         return sessionData;
     }
