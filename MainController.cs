@@ -12,22 +12,29 @@ class MainController
         while (shouldRun)
         {
             var startInput = UserInterface.GetStartUIInput();
+            var dataSet = SessionDBModel.SelectLog();
             switch (startInput)
             {
                 case Enums.MenuOption.CREATE:
                     var data = UserInterface.GetSessionData();
                     SessionDBModel.InsertLog(data);
                     break;
+                
                 case Enums.MenuOption.FIND:
                     break;
+                
                 case Enums.MenuOption.FINDALL:
-                    var dataSet = SessionDBModel.SelectLog();
                     UserInterface.DisplaySessionData(dataSet);
                     break;
+                
                 case Enums.MenuOption.UPDATE:
+                    UserInterface.DisplaySessionData(dataSet);
+                    
                     break;
+                
                 case Enums.MenuOption.DELETE:
                     break;
+                
                 case Enums.MenuOption.EXIT:
                     shouldRun = false;
                     break;

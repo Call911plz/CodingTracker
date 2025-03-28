@@ -105,6 +105,14 @@ class UserInterface
         return dateTime;
     }
 
+    public static int GetId(int[] allIds)
+    {
+        int userId = AnsiConsole.Prompt(
+            new TextPrompt<int>("Select log from ID")
+                .AddChoices(allIds)
+        );
+        return default;
+    }
 
     static TimeSpan CalculateDuration(DateTime startTime, DateTime endTime)
     {
