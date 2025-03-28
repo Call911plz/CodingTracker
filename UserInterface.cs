@@ -6,7 +6,6 @@ class UserInterface
     static Style defaultHeaderStyle = new (foreground: Color.White);
     const string Create = "[white]Start new session[/]";
     const string FindAll = "[white]View all sessions[/]";
-    const string Find = "[white]Search session[/]";
     const string Update = "[white]Update session[/]";
     const string Delete = "[white]Delete session[/]";
     const string Exit = "[red]Exit[/]";
@@ -25,8 +24,7 @@ class UserInterface
                 .Title("[bold green3_1]Select Option: [/]")
                 .MoreChoicesText("[grey](Move up and down to reveal move options)[/]")
                 .AddChoices([
-                    Create, FindAll, Find,
-                    Update, Delete, Exit
+                    Create, FindAll, Update, Delete, Exit
                 ]));
         
         // matchs input for enum
@@ -36,8 +34,6 @@ class UserInterface
                 return Enums.MenuOption.CREATE;
             case FindAll:
                 return Enums.MenuOption.FINDALL;
-            case Find:
-                return Enums.MenuOption.FIND;
             case Update:
                 return Enums.MenuOption.UPDATE;
             case Delete:

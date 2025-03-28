@@ -1,6 +1,6 @@
 class Enums
 {
     public enum MenuOption {
-        CREATE, FIND, FINDALL, UPDATE, DELETE, EXIT
+        CREATE, FINDALL, UPDATE, DELETE, EXIT
     }
 }

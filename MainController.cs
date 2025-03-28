@@ -21,9 +21,6 @@ class MainController
                     SessionDBModel.InsertLog(dataCreate); // Insert Log
                     break;
                 
-                case Enums.MenuOption.FIND:
-                    break;
-                
                 case Enums.MenuOption.FINDALL:
                     UserInterface.DisplaySessionData(dataSet); // Show all logs
                     break;
