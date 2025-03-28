@@ -7,11 +7,5 @@ class Program
     {
         // Run main
         MainController.Start();
-
-        // // Testing specific methods
-        // SessionDBModel.CreateDB();
-        // Console.Clear();
-        // UserInterface.GetId([0,2,3,4,6,12]);
-        // SessionDBModel.ExitDB();
     }
 }
